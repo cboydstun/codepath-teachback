@@ -1,36 +1,32 @@
-const state = { count: 0 };
+// get the increment and decrement buttons
+const incrementButton = document.getElementById('increment');
+const decrementButton = document.getElementById('decrement');
 
-// render function
-function render() {
-    const counter = document.createElement('p');
-    counter.textContent = `Count: ${state.count}`;
+// state using vanilla JavaScript
+function main() {
+    let count = 0;
 
-    const incrementButton = document.createElement('button');
-    incrementButton.textContent = 'Increment';
-    incrementButton.onclick = increment;
+    // handle clicks on the increment button
+    incrementButton.addEventListener('click', function () {
+        count++;
+        render();
+    });
 
-    const decrementButton = document.createElement('button');
-    decrementButton.textContent = 'Decrement';
-    decrementButton.onclick = decrement;
+    // handle clicks on the decrement button
+    decrementButton.addEventListener('click', function () {
+        count--;
+        render();
+    });
 
-    const app = document.getElementById('app');
-    app.innerHTML = '';
-    app.appendChild(counter);
-    app.appendChild(incrementButton);
-    app.appendChild(decrementButton);
-}
+    /**
+     * `render()` is a function that simply updates the HTML
+     * element with the id of `count` to display the current value
+     */
+    function render() {
+        document.getElementById('count').innerHTML = `The count is : ${count}`;
+    }
 
-// increment function
-function increment() {
-    state.count++;
     render();
 }
 
-// decrement function
-function decrement() {
-    state.count--;
-    render();
-}
-
-// initial render
-render();
+main();
